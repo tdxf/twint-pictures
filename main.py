@@ -3,6 +3,7 @@ import os
 import twint
 from PIL import Image, ImageDraw
 
+
 def download_tweets(handle):
     """
     Downloads the last 1000 tweets from 'handle' to 'handle'.tweets
@@ -23,6 +24,7 @@ def download_tweets(handle):
 
     return filename
 
+
 def process_tweets(filename):
     """
     Opens 'filename', assuming the file with this filename is the output of twint
@@ -36,6 +38,7 @@ def process_tweets(filename):
     # Remove some info at the beginning with slices
     # Limits all tweets to 300 chars
     return [line[61:361] for line in lines]
+
 
 def tweet_list_to_numbers(tweet_list):
     """
@@ -56,6 +59,7 @@ def tweet_list_to_numbers(tweet_list):
     # Limiting and returning
     return [n % 255 if n > 255 else n for n in number_list]
 
+
 def numbers_to_rgb_list(number_list):
     """
     Groups the numbers in number_list by 3
@@ -74,6 +78,7 @@ def numbers_to_rgb_list(number_list):
 
     return rgb_list
 
+
 def create_image(rgb_list):
     """
     Returns a PIL image created from the colors in rgb_list
@@ -87,6 +92,7 @@ def create_image(rgb_list):
         draw.point((i%10, i//10), color)
 
     return im
+
 
 handle = input("Tweet handle:\n")
 colors = numbers_to_rgb_list(tweet_list_to_numbers(process_tweets(download_tweets(handle))))
