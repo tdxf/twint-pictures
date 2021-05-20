@@ -57,7 +57,7 @@ def tweet_list_to_numbers(tweet_list):
             number_list[i] += ord(char)
 
     # Limiting and returning
-    return [n % 255 if n > 255 else n for n in number_list]
+    return [n % 255 for n in number_list]
 
 
 def numbers_to_rgb_list(number_list):
